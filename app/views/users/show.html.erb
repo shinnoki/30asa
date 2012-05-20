@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @user.name %>
+  
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Level</th>
+    <th>Ver</th>
+    <th>Notes</th>
+    <th>Score</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+<>
+<% Song.all.each do |song, i| %>
+  <tr>
+    <td><%= link_to song.title, song %></td>
+    <td><%= song.level %></td>
+    <td><%= song.ver %></td>
+    <td><%= song.notes %></td>
+    <% if record=@user.records.find_by_song_id(song, :order=>'created_at desc') %>
+    <td><%= record.score %></td>
+    <% else %>
+    <td>No Play</td>
+    <% end %>
+    <%= form_for(Record.new) do |f| %>
+    <%= f.hidden_field :user_id, :value=>@user.id %>
+    <%= f.hidden_field :song_id, :value=>song.id %>
+    <td><%= f.number_field :score %></td>
+    <td><%= f.submit %></td>
+    <% end %>
+    <td><%= link_to 'Edit', edit_song_path(song) %></td>
+    <td><%= link_to 'Destroy', song, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+</p>
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

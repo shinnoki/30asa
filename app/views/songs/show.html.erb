@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @song.title %>
+</p>
+
+<p>
+  <b>Level:</b>
+  <%= @song.level %>
+</p>
+
+<p>
+  <b>Ver:</b>
+  <%= @song.ver %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%= @song.notes %>
+</p>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Score</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% User.all.each do |user| %>
+  <tr>
+    <td><%= link_to user.name, user %></td>
+    <% if record=@song.records.find_by_user_id(user, :order=>'created_at desc') %>
+    <td><%= record.score %></td>
+    <% else %>
+    <td>No Play</td>
+    <% end %>
+    <td></td>
+    <td></td>
+    <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+
+<%= link_to 'Edit', edit_song_path(@song) %> |
+<%= link_to 'Back', songs_path %>

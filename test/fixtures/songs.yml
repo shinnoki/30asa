@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  level: 1
+  ver: 1
+  notes: 1
+
+two:
+  title: MyString
+  level: 1
+  ver: 1
+  notes: 1
