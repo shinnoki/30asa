@@ -1,17 +1,30 @@
-<h2>Recent Updates</h2>
-<table>
+<h2>最近のスコア</h2>
+<table class="recent">
   <tr>
-    <td>User</td>
-    <td>Song</td>
-    <td>Score</td>
-    <td>Updated at</td>
+    <th>User</th>
+    <th>Song</th>
+    <th>Score</th>
+    <th>Updated at</th>
+  </tr>
 <% Record.find(:all, :order=>'created_at desc', :limit=>20).each do |record| %>
   <tr>
     <td><%= link_to record.user.name, record.user %></td>
     <td><%= link_to record.song.title, record.song %></td>
-    <td><%= record.score %></td>
-    <td><%= record.created_at %></td>
-    <td><%= link_to 'Edit', edit_record_path(record) %></td>
-    <td><%= link_to 'Destroy', record, confirm: 'Are you sure?', method: :delete %></td>
+    <% old_record = Record.find(:first,
+    							:order=>'created_at desc',
+    							:conditions=>["user_id=? AND song_id=? AND created_at<?",
+    								record.user, record.song, record.created_at]) %>
+    <td>
+    <% if old_record %>
+      <%= old_record.score %>
+    <% else %>
+      No Play
+    <% end %>
+     -> <%= record.score %></td>
+    <td><%= record.created_at.strftime('%F %T') %></td>
   </tr>
 <% end %>
+</table>
+<h2>更新履歴</h2>
+
+

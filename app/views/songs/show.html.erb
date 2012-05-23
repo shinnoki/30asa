@@ -1,49 +1,40 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @song.title %>
-</p>
+<h2>楽曲情報: <%= @song.title %></h2>
 
-<p>
-  <b>Level:</b>
-  <%= @song.level %>
-</p>
-
-<p>
-  <b>Ver:</b>
-  <%= @song.ver %>
-</p>
-
-<p>
-  <b>Notes:</b>
-  <%= @song.notes %>
-</p>
-
+<table>
+  <tr>
+  	<th>Level</th>
+  	<th>Title</th>
+  	<th>Notes</th>
+  	<th>Ver</th>
+  </tr>
+  <tr>
+  	<td>☆<%= @song.level %></td>
+  	<td><%= @song.title %></td>
+    <td><%= @song.notes %></td>
+    <td><%= ver_name @song.ver %></td>
+  </tr>
+</table>
+<p></p>
 <table>
   <tr>
     <th>Name</th>
     <th>Score</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Rank</th>
+    <th>Valuation</th>
+    <th>Rate</th>
   </tr>
 
-<% User.all.each do |user| %>
+<h2>ランキング</h2>
+<% @users.each do |user| %>
   <tr>
-    <td><%= link_to user.name, user %></td>
-    <% if record=@song.records.find_by_user_id(user, :order=>'created_at desc') %>
-    <td><%= record.score %></td>
-    <% else %>
-    <td>No Play</td>
-    <% end %>
-    <td></td>
-    <td></td>
-    <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>
+  	<% record=@song.records.find_by_user_id(user, :order=>'created_at desc') %>
+  	<td><%= link_to user.name, user %></td>
+  	<td><%= show_score record %></td>
+  	<td><%= show_rank record %>
+    <td><%= show_valuation record %></td>
+    <td><%= show_rate record %></td>
   </tr>
 <% end %>
 </table>
-
-
-<%= link_to 'Edit', edit_song_path(@song) %> |
-<%= link_to 'Back', songs_path %>

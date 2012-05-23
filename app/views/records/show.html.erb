@@ -2,12 +2,12 @@
 
 <p>
   <b>User:</b>
-  <%= @record.user_id %>
+  <%= @user.name %>
 </p>
 
 <p>
   <b>Song:</b>
-  <%= @record.song_id %>
+  <%= @song.title %>
 </p>
 
 <p>
@@ -16,5 +16,5 @@
 </p>
 
 
-<%= link_to 'Edit', edit_record_path(@record) %> |
-<%= link_to 'Back', records_path %>
+<%= link_to 'Edit', edit_user_record_path %> |
+<%= link_to 'Back', user_records_path %>

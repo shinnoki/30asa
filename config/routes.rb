@@ -1,9 +1,11 @@
 Sample::Application.routes.draw do
-  resources :records
-  get "users/new_record"
-  resources :users
-  resources :songs
   
+  resources :users, :except => ['edit', 'destroy'] do 
+    get 'records/new_lump' => 'records#new_lump'
+    post 'records/create_lump' => 'records#create_lump'
+    resources :records, :except => ['edit', 'destroy']
+  end
+  resources :songs, :only => ['index','show']
   
   ActiveAdmin.routes(self)
   devise_for :admin_users, ActiveAdmin::Devise.config

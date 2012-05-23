@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+<% @new_records.each do |record| %>
+  <% if record.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(record.errors.count, "error") %> prohibited this record from being saved:</h2>
+
+      <ul>
+      <% record.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>
+
+<h2>一括編集: <%= @user.name %></h2>
+
+<%= form_tag :action=>'create_lump' do %>
+<table>
+  <tr>
+    <th>Level</th>
+    <th>Title</th>
+    <th>Notes</th>
+    <th>Score</th>
+    <th></th>
+    <th>New Score</th>
+  </tr>
+<% Song.all.each_with_index do |song,i| %>
+  <tr>
+    <td>☆<%= song.level %></td>
+    <td><%= link_to song.title, song %></td>
+    <td><%= song.notes %></td>
+    <% record_old = @user.records.find_by_song_id(song, :order=>'created_at desc') %>
+    <% if record_old %>
+      <td><%= record_old.score %></td>
+    <% else %>
+      <td>No Play</td>
+    <% end %>
+    <td>-></td>
+
+
+    
+    <td>
+      <%= hidden_field_tag 'records[][user_id]', @user.id %>
+      <%= hidden_field_tag 'records[][song_id]', song.id %>
+      <%= number_field_tag 'records[][score]', @new_records[i].score, :size=>"4" %>
+    </td>
+  </tr>
+<% end %>
+</table>
+<p><%= submit_tag '一括更新！' %></p>
+<% end %>

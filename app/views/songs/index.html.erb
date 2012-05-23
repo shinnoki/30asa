@@ -1,27 +1,21 @@
-<h1>Listing songs</h1>
+<h2>楽曲リスト</h2>
 
 <table>
   <tr>
-    <th>Title</th>
     <th>Level</th>
-    <th>Ver</th>
+    <th>Title</th>
     <th>Notes</th>
-    <th></th>
-    <th></th>
+    <th>Ver</th>
   </tr>
 
 <% @songs.each do |song| %>
   <tr>
+    <td>☆<%= song.level %></td>
     <td><%= link_to song.title, song%></td>
-    <td><%= song.level %></td>
-    <td><%= song.ver %></td>
     <td><%= song.notes %></td>
-    <td><%= link_to 'Edit', edit_song_path(song) %></td>
-    <td><%= link_to 'Destroy', song, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= ver_name song.ver %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'New Song', new_song_path %>

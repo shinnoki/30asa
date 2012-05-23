@@ -1,5 +1,5 @@
 class Song < ActiveRecord::Base
   attr_accessible :level, :notes, :title, :ver
   
-  has_many :records
+  has_many :records, :dependent => :destroy
 end

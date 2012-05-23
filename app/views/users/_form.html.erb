@@ -12,10 +12,9 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    DJ NAME: <%= f.text_field :name, :size => 8 %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit '登録！' %>
   </div>
 <% end %>

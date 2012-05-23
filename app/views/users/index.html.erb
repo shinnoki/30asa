@@ -1,21 +1,9 @@
-<h1>Listing users</h1>
+<h2>ユーザーリスト</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<p>
 <% @users.each do |user| %>
-  <tr>
-    <td><%= link_to user.name, user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
+  <%= link_to user.name, user %>
 <% end %>
-</table>
+</p>
 
-<br />
-
-<%= link_to 'New User', new_user_path %>
+<%= link_to 'ユーザー登録', new_user_path %>
