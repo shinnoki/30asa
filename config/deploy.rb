@@ -40,5 +40,5 @@ end
 
 after "deploy:update_code", :bundle_install
 task :bundle_install, :roles => :app do
-  run "cd #{releasa_path} && bundle install"
+  run "cd #{release_path} && bundle install"
 end

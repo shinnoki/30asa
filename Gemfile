@@ -36,8 +36,10 @@ gem 'activeadmin'
 # gem 'unicorn'
 
 # Deploy with Capistrano
-gem 'rvm-capistrano'
-gem 'capistrano'
+group :development do
+  gem 'rvm-capistrano'
+  gem 'capistrano'
+end
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
