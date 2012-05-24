@@ -1,0 +1,25 @@
+<h1>Listing linebbs</h1>
+
+<table>
+  <tr>
+    <th>Author</th>
+    <th>Text</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @linebbs.each do |linebb| %>
+  <tr>
+    <td><%= linebb.author %></td>
+    <td><%= linebb.text %></td>
+    <td><%= link_to 'Show', linebb %></td>
+    <td><%= link_to 'Edit', edit_linebb_path(linebb) %></td>
+    <td><%= link_to 'Destroy', linebb, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Linebb', new_linebb_path %>

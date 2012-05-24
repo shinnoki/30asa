@@ -1,3 +1,19 @@
+<h1>-仮運営中-</h1>
+<h1>予期無くデータが消去されるかもしれません</h1>
+<br />
+<h2>一行掲示板</h2>
+<p>
+<%= form_for(@new_linebb) do |f| %>
+名前 <%= f.text_field :author, :size => 5 %> コメント <%= f.text_field :text, :size => 64 %>  <%= f.submit '送信' %>
+<% end %>
+</p>
+<table>
+<% @linebbs.each do |linebb| %>
+  <tr>
+	<td class="bbs">[<%= linebb.author %>] <%= linebb.text %> (<%= linebb.created_at.strftime('%F %T') %>)</td>
+  </tr>	
+<% end %>
+</table>
 <h2>最近のスコア</h2>
 <table class="recent">
   <tr>
@@ -6,7 +22,7 @@
     <th>Score</th>
     <th>Updated at</th>
   </tr>
-<% Record.find(:all, :order=>'created_at desc', :limit=>20).each do |record| %>
+<% @records.each do |record| %>
   <tr>
     <td><%= link_to record.user.name, record.user %></td>
     <td><%= link_to record.song.title, record.song %></td>
@@ -26,5 +42,10 @@
 <% end %>
 </table>
 <h2>更新履歴</h2>
-
-
+<table>
+<% @histories.each do |history| %>
+  <tr>
+	<td class="bbs"><%= history.created_at.strftime('%F') %>: <%= history.text %></td>
+  </tr>	
+<% end %>
+</table>

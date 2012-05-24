@@ -62,7 +62,7 @@ class RecordsController < InheritedResources::Base
                                  :order=>'created_at desc',
                                  :conditions=>["user_id=? AND song_id=?",
                                  new_record.user, new_record.song])
-        if new_record.score and (new_record.score != old_record.score)
+        if new_record.score and (old_record.blank? or (new_record.score != old_record.score))
           new_record.save!
           count += 1
         end
@@ -72,7 +72,7 @@ class RecordsController < InheritedResources::Base
       flash[:notice] = 'スコアを%d件更新しました' % count
     end
     redirect_to @user
-    
+
   rescue => e
     render :action => 'new_lump'
   end

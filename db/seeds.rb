@@ -1,3 +1,4 @@
+#coding: utf-8
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -5,3 +6,21 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Song.create([{
+  :title => "KEEP ON MOVIN'(N)",
+  :level => 1,
+  :notes => 98,
+  :ver => 1
+},{
+  :title => "Colorful Cookie(N)",
+  :level => 5,
+  :notes => 570,
+  :ver => 16
+},{
+  :title => "Mermaid girl -秋葉工房MIX-(H)",
+  :level => 6,
+  :notes => 678,
+  :ver => 19  
+}])
+
+

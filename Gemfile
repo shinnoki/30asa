@@ -37,8 +37,8 @@ gem 'activeadmin'
 
 # Deploy with Capistrano
 group :development do
-  gem 'rvm-capistrano'
   gem 'capistrano'
+  gem 'rvm-capistrano'
 end
 
 # To use debugger

@@ -1,11 +1,14 @@
 Asa::Application.routes.draw do
   
-  resources :users, :except => ['edit', 'destroy'] do 
+  resources :linebbs
+
+  # resources :users, :except => ['edit', 'destroy'] do 
+  resources :users do 
     get 'records/new_lump' => 'records#new_lump'
     post 'records/create_lump' => 'records#create_lump'
-    resources :records, :except => ['edit', 'destroy']
+    resources :records#, :except => ['edit', 'destroy']
   end
-  resources :songs, :only => ['index','show']
+  resources :songs#, :only => ['index','show']
   
   ActiveAdmin.routes(self)
   devise_for :admin_users, ActiveAdmin::Devise.config

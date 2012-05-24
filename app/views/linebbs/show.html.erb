@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Author:</b>
+  <%= @linebb.author %>
+</p>
+
+<p>
+  <b>Text:</b>
+  <%= @linebb.text %>
+</p>
+
+
+<%= link_to 'Edit', edit_linebb_path(@linebb) %> |
+<%= link_to 'Back', linebbs_path %>
