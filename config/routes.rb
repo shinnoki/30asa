@@ -1,4 +1,4 @@
-Sample::Application.routes.draw do
+Asa::Application.routes.draw do
   
   resources :users, :except => ['edit', 'destroy'] do 
     get 'records/new_lump' => 'records#new_lump'
