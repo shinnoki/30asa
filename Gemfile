@@ -38,7 +38,6 @@ gem 'activeadmin'
 # Deploy with Capistrano
 gem 'rvm-capistrano'
 gem 'capistrano'
-gem 'capistrano_colors'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
