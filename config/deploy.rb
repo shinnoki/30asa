@@ -6,9 +6,14 @@ set :repository,  "ssh://#{user}@#{domain}/~/git/#{application}.git"
 set :deploy_to, "/home/#{user}/rails/#{application}"
 
 set :scm, :git
-require "bundler/capistrano"
-set :rvm_ruby_string, "1.9.3"
+
+# $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
+require 'rvm/capistrano'
+set :rvm_ruby_string, '1.9.3'
 set :rvm_type, :user
+
+require "bundler/capistrano"
+
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
 role :web, "sinki.cc"                          # Your HTTP server, Apache/etc
@@ -31,4 +36,9 @@ namespace :deploy do
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
+end
+
+after "deploy:update_code", :bundle_install
+task :bundle_install, :roles => :app do
+  run "cd #{releasa_path} && bundle install"
 end
