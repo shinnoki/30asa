@@ -20,6 +20,8 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'execjs'
+gem 'therubyracer'
 gem 'jquery-rails'
 
 gem 'activeadmin'
@@ -34,6 +36,7 @@ gem 'activeadmin'
 # gem 'unicorn'
 
 # Deploy with Capistrano
+gem 'rvm-capistrano'
 gem 'capistrano'
 
 # To use debugger
