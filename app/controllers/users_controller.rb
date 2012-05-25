@@ -1,5 +1,11 @@
 # encoding: utf-8 
 class UsersController < InheritedResources::Base
+  def edit
+    @user = User.find(params[:id])
+    if @user.encrypted_password
+      redirect_to edit_user_registration_path
+    end
+  end
   def new_record
     records = params[:records]
     user = User.find(params[:user])

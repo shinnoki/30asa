@@ -1,4 +1,8 @@
 class SongsController < InheritedResources::Base
+  def index
+    @songs = Song.all(:order => 'level, title')
+  end
+  
   def show
     @song = Song.find(params[:id])
     users = User.all

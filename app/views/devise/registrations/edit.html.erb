@@ -1,0 +1,30 @@
+<h2>アカウント編集: <%= current_user.account %></h2>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div>ユーザー名<br />
+  <%= f.text_field :account %></div>
+  
+  <div>現在のパスワード <i>(we need your current password to confirm your changes)</i><br />
+  <%= f.password_field :current_password %></div>
+
+  <div>新しいパスワード <i>(変更するときのみ入力してください)</i><br />
+  <%= f.password_field :password, :autocomplete => "off" %></div>
+
+  <div>新しいパスワード(再入力)<br />
+  <%= f.password_field :password_confirmation %></div>
+  
+  <div>DJ NAME<br />
+  <%= f.text_field :name %></div>
+
+
+<br />
+  <div><%= f.submit "編集" %></div>
+<% end %>
+
+<h3>アカウントの消去</h3>
+
+<p> <%= link_to "アカウントの消去", registration_path(resource_name), :confirm => "本当によろしいですか？", :method => :delete %></p>
+
+<%= link_to "Back", :back %>

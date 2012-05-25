@@ -1,7 +1,3 @@
-<p id="notice">
-  <%= notice %>
-</p>
-
 <% if @user.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -38,5 +34,8 @@
   </tr>
 <% end %>
 </table>
-<p><%= link_to 'スコア一括編集', user_records_new_lump_path(@user) %></p>
-
+<p><%= link_to 'スコア一括編集', user_records_new_lump_path(@user) %>
+<% if @user.encrypted_password.blank? %>
+| <%= link_to 'パスワード登録', edit_user_path(@user) %>
+<% end %>
+</p>

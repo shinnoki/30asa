@@ -29,6 +29,7 @@ gem 'execjs'
 gem 'therubyracer'
 gem 'jquery-rails'
 
+gem 'devise'
 gem 'activeadmin'
 
 # To use ActiveModel has_secure_password
