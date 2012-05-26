@@ -1,7 +1,7 @@
 #coding: utf-8
 class RecordsController < InheritedResources::Base
   def index
-    @records = Record.all
+    @records = Record.paginate(:page => params[:page],:order => 'created_at desc', :per_page => 50)
   end
   
   def show

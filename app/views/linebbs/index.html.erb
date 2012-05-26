@@ -1,25 +1,18 @@
-<h1>Listing linebbs</h1>
+<h2>一行掲示板</h2>
+<p>
+<%= form_for(Linebb.new) do |f| %>
+名前 <%= f.text_field :author, :size => 5 %> コメント <%= f.text_field :text, :size => 56 %>  <%= f.submit '送信' %>
+<% end %>
+</p>
 
+<%= will_paginate @linebbs, :previous_label=>'←前へ', :next_label=>'次へ→' %> 
 <table>
-  <tr>
-    <th>Author</th>
-    <th>Text</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
 <% @linebbs.each do |linebb| %>
   <tr>
-    <td><%= linebb.author %></td>
-    <td><%= linebb.text %></td>
-    <td><%= link_to 'Show', linebb %></td>
-    <td><%= link_to 'Edit', edit_linebb_path(linebb) %></td>
-    <td><%= link_to 'Destroy', linebb, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
+	<td class="bbs">[<%= linebb.author %>] <%= linebb.text %> (<%= linebb.created_at.strftime('%F %T') %>)</td>
+  </tr>	
 <% end %>
 </table>
+<%= will_paginate @linebbs, :previous_label=>'←前へ', :next_label=>'次へ→' %> 
 
-<br />
 
-<%= link_to 'New Linebb', new_linebb_path %>

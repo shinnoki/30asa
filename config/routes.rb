@@ -1,7 +1,7 @@
 Asa::Application.routes.draw do
   get 'ranking' => 'ranking#index' 
 
-  resources :linebbs
+  resources :linebbs, :only => ['index', 'create']
 
   devise_for :users
   resources :users, :except => ['desrtroy']

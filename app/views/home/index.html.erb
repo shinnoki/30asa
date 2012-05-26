@@ -1,9 +1,9 @@
 <h1>-仮運営中-</h1>
 <h1>予期無くデータが消去されるかもしれません</h1>
 <br />
-<h2>一行掲示板</h2>
+<h2><%= link_to '一行掲示板', linebbs_path %></h2>
 <p>
-<%= form_for(@new_linebb) do |f| %>
+<%= form_for(Linebb.new) do |f| %>
 名前 <%= f.text_field :author, :size => 5 %> コメント <%= f.text_field :text, :size => 56 %>  <%= f.submit '送信' %>
 <% end %>
 </p>
@@ -14,7 +14,7 @@
   </tr>	
 <% end %>
 </table>
-<h2>最近のスコア</h2>
+<h2><%= link_to '最近のスコア', records_path %></h2>
 <table class="recent">
   <tr>
     <th>User</th>
