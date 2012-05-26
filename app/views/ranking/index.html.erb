@@ -4,10 +4,10 @@
   	<th>Name</th>
   	<th>Point</th>
   </tr>
-<% @ranking.each do |ranking| %>
+<% @rankers.each do |ranker| %>
   <tr>
-  	<td><%= link_to ranking['user'].name, ranking['user'] %></td>
-  	<td><%= sprintf("%d pts.", ranking['point'].to_i) %></td>
+  	<td><%= link_to ranker['user'].name, ranker['user'] %></td>
+  	<td><%= sprintf("%d pts.", ranker['point'].to_i) %></td>
   </tr>
 <% end %>
 </table>
