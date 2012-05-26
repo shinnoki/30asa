@@ -1,18 +1,18 @@
 #coding: utf-8
 class RecordsController < InheritedResources::Base
   def index
-    @user = User.find(params[:user_id])
-    @records = @user.records
+    @records = Record.all
   end
   
   def show
-    @user = User.find(params[:user_id])
     @record = Record.find(params[:id])
+    @user = @record.user
     @song = @record.song
   end
   
+  before_filter :authenticate_user!
   def new
-    @user = User.find(params[:user_id])
+    @user = current_user
     @song = Song.find(params[:song_id])
     @record = Record.new
     @old_record = Record.find(:first,
@@ -21,26 +21,27 @@ class RecordsController < InheritedResources::Base
                               @user, @song])
   end
   
+  before_filter :authenticate_user!
   def edit
-    @user = User.find(params[:user_id])
+    @user = current_user
     @record = Record.find(params[:id])
     @song = @record.song
     @old_record = @record
   end
   
+  before_filter :authenticate_user!
   def new_lump
-    @user = User.find(params[:user_id])
+    @user = current_user
     @songs = Song.all
     @new_records = (1..@songs.count).map do
       Record.new
     end
   end
   
-  
-  
+  before_filter :authenticate_user!
   def create
     @record = Record.new(params[:record])
-    @user = @record.user
+    @user = current_user
     @song = @record.song
     if @record.save
       flash[:notice] = 'スコアを1件更新しました'
@@ -50,8 +51,9 @@ class RecordsController < InheritedResources::Base
     end
   end
   
+  before_filter :authenticate_user!
   def create_lump
-    @user = User.find(params[:user_id])
+    @user = current_user
     @new_records = (0..params[:records].count-1).map do |i|
       Record.new(params[:records][i])
     end

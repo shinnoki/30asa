@@ -2,11 +2,11 @@ Asa::Application.routes.draw do
   resources :linebbs
 
   devise_for :users
-  resources :users, :except => ['desrtroy'] do
-    get 'records/new_lump' => 'records#new_lump'
-    post 'records/create_lump' => 'records#create_lump'
-    resources :records, :except => ['edit', 'destroy']
-  end
+  resources :users, :except => ['desrtroy']
+  
+  get 'records/new_lump' => 'records#new_lump'
+  post 'records/create_lump' => 'records#create_lump'
+  resources :records, :except => ['edit', 'destroy']
   
   resources :songs, :only => ['index','show']
   

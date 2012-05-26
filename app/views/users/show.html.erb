@@ -27,15 +27,15 @@
     <td><%= link_to song.title, song %></td>
     <td><%= song.notes %></td>
     <% record = @user.records.find_by_song_id(song, :order=>'created_at desc') %>
-    <td><%= link_to show_score(record), new_user_record_path(@user, :song_id => song.id)%></td>
+    <td><%= show_score record %></td>
     <td><%= show_rank record %></td>
     <td><%= show_valuation record %></td>
     <td><%= show_rate record %></td>
   </tr>
 <% end %>
 </table>
-<p><%= link_to 'スコア一括編集', user_records_new_lump_path(@user) %>
+
 <% if @user.encrypted_password.blank? %>
-| <%= link_to 'パスワード登録', edit_user_path(@user) %>
+<p><%= link_to 'パスワード登録', edit_user_path(@user) %></p>
 <% end %>
-</p>
+

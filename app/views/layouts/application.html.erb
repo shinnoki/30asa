@@ -16,6 +16,7 @@
     <br />
     <% if user_signed_in? %>
       ログイン中: <%= current_user.name %>(<%= current_user.account %>)
+      <%= link_to "マイスコア編集", records_new_lump_path %>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
     <% else %>
 		<%= form_for(User.new, :as => 'user', :url => session_path('user')) do |f| %>
