@@ -1,0 +1,15 @@
+<h2>総合ランキング</h2>
+<table>
+  <tr>
+  	<th>Name</th>
+  	<th>Point</th>
+  </tr>
+<% @ranking.each do |ranking| %>
+  <tr>
+  	<td><%= link_to ranking['user'].name, ranking['user'] %></td>
+  	<td><%= sprintf("%d pts.", ranking['point'].to_i) %></td>
+  </tr>
+<% end %>
+</table>
+
+<p>(Pointは各スコアレートを合計したものです)</p>

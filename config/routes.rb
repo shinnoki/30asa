@@ -1,4 +1,6 @@
 Asa::Application.routes.draw do
+  get 'ranking' => 'ranking#index' 
+
   resources :linebbs
 
   devise_for :users
