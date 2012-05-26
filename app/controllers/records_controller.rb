@@ -1,5 +1,7 @@
 #coding: utf-8
 class RecordsController < InheritedResources::Base
+  before_filter :authenticate_user!
+  
   def index
     @records = Record.paginate(:page => params[:page],:order => 'created_at desc', :per_page => 50)
   end
@@ -10,7 +12,6 @@ class RecordsController < InheritedResources::Base
     @song = @record.song
   end
   
-  before_filter :authenticate_user!
   def new
     @user = current_user
     @song = Song.find(params[:song_id])
@@ -21,7 +22,6 @@ class RecordsController < InheritedResources::Base
                               @user, @song])
   end
   
-  before_filter :authenticate_user!
   def edit
     @user = current_user
     @record = Record.find(params[:id])
@@ -29,7 +29,6 @@ class RecordsController < InheritedResources::Base
     @old_record = @record
   end
   
-  before_filter :authenticate_user!
   def new_lump
     @user = current_user
     @songs = Song.all(:order => 'level, title')
@@ -38,7 +37,6 @@ class RecordsController < InheritedResources::Base
     end
   end
   
-  before_filter :authenticate_user!
   def create
     @record = Record.new(params[:record])
     @user = current_user
@@ -51,7 +49,6 @@ class RecordsController < InheritedResources::Base
     end
   end
   
-  before_filter :authenticate_user!
   def create_lump
     @user = current_user
     @new_records = (0..params[:records].count-1).map do |i|
