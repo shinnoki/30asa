@@ -1,6 +1,6 @@
 class RankingController < ApplicationController
   def index
-    ranking = []
+    rankers = []
     User.all.each do |user|
       point = 0
       Song.all.each do |song|
@@ -8,8 +8,8 @@ class RankingController < ApplicationController
           point += record.score.to_f / (song.notes*2).to_f * 100
         end
       end
-      ranking.push({'user'=>user, 'point'=>point})
+      rankers.push({'user'=>user, 'point'=>point})
     end
-    @ranking = ranking.sort{|a,b| b['point'] <=> a['point']}
+    @rankers = rankers.sort{|a,b| b['point'] <=> a['point']}
   end
 end

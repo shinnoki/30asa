@@ -20,6 +20,9 @@
     <th>Rank</th>
     <th>Valuation</th>
     <th>Rate</th>
+    <% if user_signed_in? %>
+    <th>YourScore</th>
+    <% end %>
   </tr>
 <% Song.all.each do |song| %>
   <tr>
@@ -31,6 +34,15 @@
     <td><%= show_rank record %></td>
     <td><%= show_valuation record %></td>
     <td><%= show_rate record %></td>
+    <% if user_signed_in? %>
+    <% your_record = current_user.records.find_by_song_id(song, :order=>'created_at desc')%>
+    <td>
+      <%= show_score your_record%>
+      <% if record and your_record %>
+      <%= sprintf("(%+d)", your_record.score-record.score) %>
+      <% end %>
+    </td>
+    <% end %>
   </tr>
 <% end %>
 </table>

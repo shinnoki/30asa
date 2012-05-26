@@ -32,7 +32,7 @@ class RecordsController < InheritedResources::Base
   before_filter :authenticate_user!
   def new_lump
     @user = current_user
-    @songs = Song.all
+    @songs = Song.all(:order => 'level, title')
     @new_records = (1..@songs.count).map do
       Record.new
     end

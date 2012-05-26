@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   validates :name, 
     :presence => true, 
     :length => { :maximum => 6 },
-    :format => { :with => /^[-0-9A-Z_@\!\?\*\$\.]*$/ }
+    :format => { :with => /^[-0-9A-Z_@#\!\?\*\$\.]*$/ }
   validates :account,
     :presence => true,
     :uniqueness => true,
