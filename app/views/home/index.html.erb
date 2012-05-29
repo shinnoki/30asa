@@ -1,19 +1,21 @@
-<h1>-仮運営中-</h1>
-<h1>予期無くデータが消去されるかもしれません</h1>
-<br />
+<div id="linebbs">
 <h2><%= link_to '一行掲示板', linebbs_path %></h2>
 <p>
 <%= form_for(Linebb.new) do |f| %>
-名前 <%= f.text_field :author, :size => 5 %> コメント <%= f.text_field :text, :size => 56 %>  <%= f.submit '送信' %>
+名前 <%= f.text_field :author, :size => 5 %> コメント <%= f.text_field :text, :size => 70 %>  <%= f.submit '送信' %>
 <% end %>
 </p>
 <table>
 <% @linebbs.each do |linebb| %>
   <tr>
-	<td class="bbs">[<%= linebb.author %>] <%= linebb.text %> (<%= linebb.created_at.strftime('%F %T') %>)</td>
+	<td class="bbs">[<%= linebb.author %>]<%= linebb.text %>(<%= linebb.created_at.strftime('%F %T') %>)</td>
   </tr>	
 <% end %>
 </table>
+</div>
+
+
+<div id="recent">
 <h2><%= link_to '最近のスコア', records_path %></h2>
 <table class="recent">
   <tr>
@@ -41,6 +43,9 @@
   </tr>
 <% end %>
 </table>
+</div>
+
+<div id="history">
 <h2>更新履歴</h2>
 <table>
 <% @histories.each do |history| %>
@@ -49,3 +54,4 @@
   </tr>	
 <% end %>
 </table>
+</div>

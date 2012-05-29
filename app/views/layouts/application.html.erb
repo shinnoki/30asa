@@ -7,12 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body class='<%= controller.controller_name %>'>
+<div id="container">
   <div id="header">
     <h1><%= link_to '30songs All-round Score Attack', root_path %></h1>
-    <%= link_to 'Home', root_path%>
-    <%= link_to 'Songs', songs_path %>
-    <%= link_to 'Users', users_path %>
-    <%= link_to 'Ranking', ranking_path %>
+    <div id="menu">
+    	<li><%= link_to 'Home', root_path%></li>
+    	<li><a>About</a></li>
+    	<li><%= link_to 'Songs', songs_path %></li>
+    	<li><%= link_to 'Users', users_path %></li>
+    	<li><%= link_to 'Ranking', ranking_path %></li>
+    </div>
+    <br />
     <br />
     <br />
     <% if user_signed_in? %>
@@ -34,5 +39,6 @@
     <p id="alert"><%= alert %></p>
     <%= yield %>
   </div>
+</div>
 </body>
 </html>
